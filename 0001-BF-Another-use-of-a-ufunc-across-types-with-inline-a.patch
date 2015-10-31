@@ -1,0 +1,27 @@
+From e626cb981cabc8dc68605ae6d9be8e8e855f1acc Mon Sep 17 00:00:00 2001
+From: arokem <arokem@gmail.com>
+Date: Mon, 12 Oct 2015 15:24:19 -0700
+Subject: [PATCH 1/2] BF: Another use of a ufunc across types with inline
+ allocation.
+
+Apparently that's a no-no on numpy 1.10.
+---
+ dipy/core/sphere.py | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/dipy/core/sphere.py b/dipy/core/sphere.py
+index 6563542..51d4bc2 100644
+--- a/dipy/core/sphere.py
++++ b/dipy/core/sphere.py
+@@ -401,7 +401,7 @@ def _switch_vertex(index1, index2, vertices):
+     A = vertices[index1]
+     B = vertices[index2]
+     is_far = (A * B).sum(-1) < 0
+-    index2[is_far] += n/2
++    index2[is_far] = index2[is_far] + (n / 2)
+     index2 %= n
+ 
+ 
+-- 
+2.6.2
+

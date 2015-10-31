@@ -165,7 +165,7 @@ pushd %{buildroot}%{_bindir}
 popd
 
 # docs autoinstalled in wrong directory
-rm -rf %{buildroot}%{_datadir}/dipy/
+rm -rf %{buildroot}%{_datadir}/doc/dipy/
 
 %check
 PYTHONPATH=%{buildroot}%{python2_sitearch} \

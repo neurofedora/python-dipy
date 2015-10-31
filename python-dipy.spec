@@ -165,14 +165,13 @@ pushd %{buildroot}%{_bindir}
 popd
 
 %check
-# Don't fail here, it wants to run installed commands
 PYTHONPATH=%{buildroot}%{python2_sitearch} \
 PATH="%{buildroot}%{_bindir}:$PATH" \
-  xvfb-run nosetests-%{python2_version} -v build/lib.*-%{python2_version} || :
+  xvfb-run nosetests-%{python2_version} -v build/lib.*-%{python2_version}
 pushd %{py3dir}
   PYTHONPATH=%{buildroot}%{python3_sitearch} \
   PATH="%{buildroot}%{_bindir}:$PATH" \
-    xvfb-run nosetests-%{python3_version} -v build/lib.*-%{python3_version} || :
+    xvfb-run nosetests-%{python3_version} -v build/lib.*-%{python3_version}
 popd
 
 %files -n python2-%{modname}
